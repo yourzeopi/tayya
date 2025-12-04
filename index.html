@@ -28,10 +28,13 @@
         text-shadow: 0 0 20px #ff55c7;
         white-space: nowrap;
         border-right: 4px solid #fff;
-        width: 0;
+        width: fit-content;
+        margin: 0 auto; /* bikin selalu center */
         overflow: hidden;
         animation: typing 3s steps(25), cursor .7s step-end infinite;
+        text-align: center;
     }
+
 
     @keyframes typing {
         from { width: 0 }
@@ -116,7 +119,10 @@
 
         .typing {
             font-size: 28px;
-            width: 100%;
+            white-space: normal;     /* agar teks tidak kepotong */
+            border-right: none;      /* cursor dihapus supaya tidak melebar */
+            width: 100%; 
+            text-align: center;
         }
 
         .gif-box {
