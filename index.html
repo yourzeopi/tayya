@@ -1,93 +1,128 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tayya Cantik</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tayya Cantik</title>
+
+<style>
     body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      background: linear-gradient(135deg, #ff9ecb, #ffc7e6, #ffb3d9, #ffa3cf);
-      background-size: 300% 300%;
-      animation: bgMove 10s infinite alternate ease-in-out;
-      font-family: "Poppins", sans-serif;
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #ff8fb8, #ffc7ec);
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        animation: fadeBg 6s ease-in-out infinite alternate;
     }
 
-    /* Animated gradient background */
-    @keyframes bgMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes fadeBg {
+        0% { background: linear-gradient(135deg, #ff8fb8, #ffc7ec); }
+        100% { background: linear-gradient(135deg, #ffa6d1, #ffd6f2); }
     }
 
     h1 {
-      position: relative;
-      font-size: 52px;
-      color: white;
-      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-      animation: fadeIn 1.5s ease, glow 2.5s infinite alternate ease-in-out;
+        font-size: 42px;
+        color: white;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        animation: fadeIn 2s ease-out forwards;
+        margin-bottom: 10px;
     }
 
-    /* Text fade-in + slide */
     @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(25px); }
-      100% { opacity: 1; transform: translateY(0); }
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
-    /* Soft glowing text */
-    @keyframes glow {
-      0% { text-shadow: 0 0 10px #ffffff80; }
-      100% { text-shadow: 0 0 20px #ffffff, 0 0 35px #ffd6f2; }
+    .gif-box {
+        width: 260px;
+        height: 260px;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+        animation: popIn 1.5s ease-out forwards;
+        margin-top: 10px;
     }
 
-    /* Floating hearts particles */
-    .heart {
-      position: absolute;
-      color: white;
-      font-size: 20px;
-      opacity: 0.8;
-      animation: floatUp 6s infinite ease-in-out;
+    @keyframes popIn {
+        0% { transform: scale(0.7); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
     }
 
-    @keyframes floatUp {
-      0% { transform: translateY(50px) scale(0.7); opacity: 0; }
-      50% { opacity: 1; }
-      100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+    .gif-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
-  </style>
+
+    .photo {
+        width: 190px;
+        height: 190px;
+        border-radius: 100%;
+        margin-top: 20px;
+        box-shadow: 0 0 25px rgba(255,255,255,0.6);
+        animation: float 4s ease-in-out infinite;
+        object-fit: cover;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+        100% { transform: translateY(0px); }
+    }
+
+    .music-btn {
+        margin-top: 25px;
+        padding: 12px 26px;
+        background: white;
+        color: #ff56a5;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+        transition: 0.2s;
+    }
+
+    .music-btn:hover {
+        transform: scale(1.09);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.35);
+    }
+</style>
 </head>
+
 <body>
 
-  <h1>Hi Tayya Cantik ✨</h1>
+<h1>Hai Tayya Cantik ✨</h1>
 
-  <!-- Random floating hearts -->
-  <script>
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💖";
+<div class="gif-box">
+    <img src="https://raw.githubusercontent.com/yourzeopi/tayya/main/tayya%20cantik.gif">
+</div>
 
-      // posisi random
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+<img class="photo" src="https://raw.githubusercontent.com/yourzeopi/tayya/main/pototayya.jpg">
 
-      document.body.appendChild(heart);
+<button class="music-btn" onclick="toggleMusic()">Play / Pause Music 🎵</button>
 
-      // delete after animation
-      setTimeout(() => {
-        heart.remove();
-      }, 7000);
+<audio id="bgmusic" preload="auto">
+    <source src="https://raw.githubusercontent.com/yourzeopi/tayya/main/ilysb.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const audio = document.getElementById("bgmusic");
+let started = false;
+
+function toggleMusic() {
+    if (!started) {
+        audio.currentTime = 40; 
+        started = true;
     }
-
-    // heart muncul setiap 400ms
-    setInterval(createHeart, 400);
-  </script>
+    if (audio.paused) audio.play();
+    else audio.pause();
+}
+</script>
 
 </body>
 </html>
