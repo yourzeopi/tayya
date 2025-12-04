@@ -11,43 +11,46 @@
         font-family: "Poppins", sans-serif;
         background: #000;
         height: 100vh;
-        overflow: hidden;
+        overflow-x: hidden;
         display: flex;
-        justify-content: center;
-        align-items: center;
         flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 40px;
         position: relative;
     }
 
-    /* 🌟 Neon Glow */
-    .neon {
-        text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff89c7;
+    /* ---- TYPING EFFECT ---- */
+    .typing {
+        font-size: 42px;
         color: #fff;
         font-weight: 700;
-    }
-
-    /* ✨ Typing Effect */
-    #typing {
-        font-size: 43px;
+        text-shadow: 0 0 20px #ff55c7;
         white-space: nowrap;
-        overflow: hidden;
         border-right: 4px solid #fff;
         width: 0;
-        animation: typing 3s steps(30) forwards, blink .6s infinite;
-        margin-bottom: 15px;
+        overflow: hidden;
+        animation: typing 3s steps(25), cursor .7s step-end infinite;
     }
 
-    @keyframes typing { from { width: 0; } to { width: 320px; } }
-    @keyframes blink { 50% { border-color: transparent; } }
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
 
-    /* 🌸 GIF BOX */
+    @keyframes cursor {
+        50% { border-color: transparent }
+    }
+
+    /* ---- GIF BOX ---- */
     .gif-box {
-        width: 270px;
-        height: 270px;
+        width: 260px;
+        height: 260px;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-        animation: float 5s ease-in-out infinite;
+        margin-top: 25px;
+        box-shadow: 0 0 40px rgba(255, 0, 120, 0.5);
+        animation: float 4s ease-in-out infinite;
     }
 
     .gif-box img {
@@ -56,135 +59,137 @@
         object-fit: cover;
     }
 
-    /* 💗 Floating Photo */
+    /* ---- PHOTO CIRCLE ---- */
     .photo {
-        width: 210px;
-        height: 210px;
-        border-radius: 100%;
-        margin-top: 20px;
-        box-shadow: 0 0 25px rgba(255,255,255,0.8);
-        animation: float2 4s ease-in-out infinite;
+        width: 190px;
+        height: 190px;
+        border-radius: 50%;
         object-fit: cover;
+        margin-top: 25px;
+        box-shadow: 0 0 40px rgba(255, 0, 120, 0.7);
+        animation: float 4s ease-in-out infinite;
+        animation-delay: 1.2s;
     }
 
     @keyframes float {
-        0% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-14px) rotate(1deg); }
-        100% { transform: translateY(0px) rotate(0deg); }
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-14px); }
+        100% { transform: translateY(0); }
     }
 
-    @keyframes float2 {
-        0% { transform: translateY(0px) }
-        50% { transform: translateY(16px) }
-        100% { transform: translateY(0px) }
-    }
-
-    /* 🎵 Music Button */
+    /* ---- BUTTON ---- */
     .music-btn {
-        margin-top: 25px;
-        padding: 12px 28px;
-        background: #ff69b4;
+        margin-top: 30px;
+        padding: 12px 26px;
+        background: #ff3c98;
         color: white;
-        border: none;
-        border-radius: 50px;
         font-weight: 600;
+        border: none;
+        border-radius: 40px;
         cursor: pointer;
-        box-shadow: 0 0 15px #ff69b4;
+        box-shadow: 0 0 20px #ff3c9877;
         transition: 0.2s;
     }
 
     .music-btn:hover {
         transform: scale(1.08);
-        box-shadow: 0 0 25px #ff89c7;
+        box-shadow: 0 0 30px #ff3c98;
     }
 
-    /* 💕 Floating Hearts & Bubbles */
-    .bubble {
-        position: absolute;
-        bottom: -50px;
-        background: rgba(255,255,255,0.15);
-        border-radius: 50%;
-        animation: rise 10s infinite ease-in;
-    }
-
-    @keyframes rise {
-        0% { transform: translateY(0) translateX(0); opacity: 0.4; }
-        100% { transform: translateY(-120vh) translateX(40px); opacity: 0; }
-    }
-
+    /* ---- HEART BUBBLE ANIMATION ---- */
     .heart {
         position: absolute;
-        color: #ff6fae;
-        font-size: 22px;
-        animation: floatHearts 8s infinite ease-in;
+        color: #ff4d6d;
+        font-size: 28px;
+        opacity: 0.75;
+        animation: floatUp 5s linear infinite;
+        filter: drop-shadow(0 0 8px #ff4d6d);
     }
 
-    @keyframes floatHearts {
-        0% { transform: translateY(0); opacity: 0.8; }
-        100% { transform: translateY(-100vh); opacity: 0; }
+    @keyframes floatUp {
+        0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+        100% { transform: translateY(-300px) translateX(20px); opacity: 0; }
+    }
+
+    /* ---- RESPONSIVE FOR HP ---- */
+    @media (max-width: 480px) {
+
+        .typing {
+            font-size: 28px;
+            width: 100%;
+        }
+
+        .gif-box {
+            width: 200px;
+            height: 200px;
+        }
+
+        .photo {
+            width: 150px;
+            height: 150px;
+        }
+
+        .music-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .heart {
+            transform: scale(0.7);
+        }
     }
 </style>
 </head>
 
 <body>
 
-<!-- ❤️ Typing Title -->
-<div id="typing" class="neon">Hai Tayya Cantik ✨</div>
+<!-- TYPING TEXT -->
+<div class="typing">Hai Tayya Cantik ✨</div>
 
 <!-- GIF -->
 <div class="gif-box">
     <img src="https://raw.githubusercontent.com/yourzeopi/tayya/main/tayya%20cantik.gif">
 </div>
 
-<!-- Photo -->
+<!-- PHOTO -->
 <img class="photo" src="https://raw.githubusercontent.com/yourzeopi/tayya/main/pototayya.jpg">
 
-<!-- Button -->
+<!-- MUSIC BUTTON -->
 <button class="music-btn" onclick="toggleMusic()">Play / Pause Music 🎵</button>
 
-<!-- Audio -->
+<!-- AUDIO -->
 <audio id="bgmusic" preload="auto">
     <source src="https://raw.githubusercontent.com/yourzeopi/tayya/main/ilysb.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Script -->
 <script>
 const audio = document.getElementById("bgmusic");
-let started = false;
 
 function toggleMusic() {
-    if (!started) {
-        audio.currentTime = 40;
-        started = true;
-    }
-    if (audio.paused) audio.play();
-    else audio.pause();
-}
-
-/* Generate Bubbles + Hearts */
-function createFloatingItems() {
-    for (let i = 0; i < 30; i++) {
-        let b = document.createElement("div");
-        b.classList.add("bubble");
-        let size = Math.random() * 35 + 10;
-        b.style.width = size + "px";
-        b.style.height = size + "px";
-        b.style.left = Math.random() * 100 + "vw";
-        b.style.animationDuration = (7 + Math.random() * 6) + "s";
-        document.body.appendChild(b);
-    }
-
-    for (let i = 0; i < 12; i++) {
-        let h = document.createElement("div");
-        h.classList.add("heart");
-        h.innerHTML = "❤";
-        h.style.left = Math.random() * 100 + "vw";
-        h.style.fontSize = (18 + Math.random() * 18) + "px";
-        h.style.animationDuration = (6 + Math.random() * 5) + "s";
-        document.body.appendChild(h);
+    if (audio.paused) {
+        audio.currentTime = 0;  // start dari detik 0
+        audio.play();
+    } else {
+        audio.pause();
     }
 }
-createFloatingItems();
+
+/* ---- RANDOM LOVE HEART GENERATOR ---- */
+function spawnHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+
+    heart.style.left = (Math.random() * window.innerWidth) + "px";
+    heart.style.bottom = "-20px";
+    heart.style.fontSize = (22 + Math.random() * 14) + "px";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(spawnHeart, 900);
 </script>
 
 </body>
