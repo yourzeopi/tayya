@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tayya Cantik</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff9ecb, #ffc7e6, #ffb3d9, #ffa3cf);
+      background-size: 300% 300%;
+      animation: bgMove 10s infinite alternate ease-in-out;
+      font-family: "Poppins", sans-serif;
+    }
+
+    /* Animated gradient background */
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    h1 {
+      position: relative;
+      font-size: 52px;
+      color: white;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+      animation: fadeIn 1.5s ease, glow 2.5s infinite alternate ease-in-out;
+    }
+
+    /* Text fade-in + slide */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(25px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Soft glowing text */
+    @keyframes glow {
+      0% { text-shadow: 0 0 10px #ffffff80; }
+      100% { text-shadow: 0 0 20px #ffffff, 0 0 35px #ffd6f2; }
+    }
+
+    /* Floating hearts particles */
+    .heart {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      opacity: 0.8;
+      animation: floatUp 6s infinite ease-in-out;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(50px) scale(0.7); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-150px) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hi Tayya Cantik ✨</h1>
+
+  <!-- Random floating hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+
+      // posisi random
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+      heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+      document.body.appendChild(heart);
+
+      // delete after animation
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    // heart muncul setiap 400ms
+    setInterval(createHeart, 400);
+  </script>
+
+</body>
+</html>
